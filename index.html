@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+        <form>
+            Number 1<input type="text" id="num1" name="num1"><br>
+            Number 2 <input type="text" id="num2" name="num2"><br>
+            <input type="button" name="btn1" id="btn1" value="Show numbers">
+        </form>
+        <div id="displayNums"></div>
+    </body>
+    <script type="text/javascript">
+        document.getElementById("btn1").addEventListener("click", checkAmicable)
+        
+        function checkAmicable () {
+            var val1 = document.getElementById("num1").value
+            var val2 = document.getElementById("num2").value
+            
+            showNums(val1, val2);
+
+            var arr1 = getFactors(val1)
+            document.getElementById("displayNums").innerHTML += "<br> Factors of " + val1 + ": "
+            showArray(arr1)
+            var arr2 = getFactors(val2)
+            document.getElementById("displayNums").innerHTML += "<br> Factors of " + val2 + ": "
+            showArray(arr2)
+
+            document.getElementById("displayNums").innerHTML += "<br>" + val1 + " and " + val2
+            if((addArray(arr1) == val2) || addArray(arr2) == val1) {
+                document.getElementById("displayNums").innerHTML +=  " are amicable!"
+            } else {
+                document.getElementById("displayNums").innerHTML +=  " are NOT amicable."
+            }
+            
+        }
+        
+        function showNums (val1, val2) {
+            if (!val1 || !val2) {
+                document.getElementById("displayNums").innerHTML = "<br> Please enter two valid numbers <br>"
+            } else {
+                document.getElementById("displayNums").innerHTML = "<br> Your numbers: " + val1 + ", " + val2 + "<br>"
+            }
+        }
+
+
+        /*
+        Testing isFactor function
+
+        var value = isFactor(12, 2)
+        var value = isFactor(10, 3)
+        if (value) {
+            document.write("true")
+        } else {
+            document.write("false")
+        }
+        */
+
+        function isFactor(num, factor) {
+            if (num % factor == 0) {
+                return true
+            }
+            return false
+        }
+
+        /*
+        Testing showArray function
+        var arr = [2, 1, 4, 6]
+        showArray(arr);
+        */
+
+        function showArray(arr) {
+            for (i = 0; i < arr.length; ++i) {
+                var temp = arr[i];
+                if (i < (arr.length - 1)) {
+                    temp += ", "
+                }
+                document.getElementById("displayNums").innerHTML += temp
+            }
+        }
+
+
+        /*
+        Test addArray()
+
+        var arr = [2, 1, 4, 6]
+        showArray(arr)
+        var value = addArray(arr)
+        document.getElementById("displayNums").innerHTML += "<br>Sum of array: " + value
+        */
+    
+        function addArray(arr) {
+            var result = 0
+            for (i = 0; i < arr.length; ++i) {
+                result += arr[i]
+            }
+            return result;
+        }
+
+        /*
+        Test getFactors()
+        showArray(getFactors(20))
+        showArray(getFactors(6))
+        showArray(getFactors(11))
+        */
+        function getFactors(num) {
+            var factorsArr = []
+            for (i = 1; i < num; ++i) {
+                if(isFactor(num, i)) {
+                    factorsArr.push(i)
+                }
+            }
+            return factorsArr
+        }
+    </script>
+</html>
