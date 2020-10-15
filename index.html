@@ -2,11 +2,13 @@
 <html>
     <head>
         <meta charset="utf-8"/>
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     </head>
     <body>
         <form>
-            Number 1<input type="text" id="num1" name="num1"><br>
-            Number 2 <input type="text" id="num2" name="num2"><br>
+            Number 1 <input type="text" id="num1" size="12" name="num1"><br>
+            Number 2 <input type="text" id="num2" size="12" name="num2"><br>
             <input type="button" name="btn1" id="btn1" value="Show numbers">
         </form>
         <div id="displayNums"></div>
@@ -18,30 +20,32 @@
             var val1 = document.getElementById("num1").value
             var val2 = document.getElementById("num2").value
             
-            showNums(val1, val2);
+            if (showNums(val1, val2)) {
+                var arr1 = getFactors(val1)
+                document.getElementById("displayNums").innerHTML += "<br> Factors of " + val1 + ": &nbsp;"
+                showArray(arr1)
+                var arr2 = getFactors(val2)
+                document.getElementById("displayNums").innerHTML += "<br> Factors of " + val2 + ": &nbsp;"
+                showArray(arr2)
 
-            var arr1 = getFactors(val1)
-            document.getElementById("displayNums").innerHTML += "<br> Factors of " + val1 + ": "
-            showArray(arr1)
-            var arr2 = getFactors(val2)
-            document.getElementById("displayNums").innerHTML += "<br> Factors of " + val2 + ": "
-            showArray(arr2)
-
-            document.getElementById("displayNums").innerHTML += "<br>" + val1 + " and " + val2
-            if((addArray(arr1) == val2) || addArray(arr2) == val1) {
-                document.getElementById("displayNums").innerHTML +=  " are amicable!"
-            } else {
-                document.getElementById("displayNums").innerHTML +=  " are NOT amicable."
+                document.getElementById("displayNums").innerHTML += "<br><b>" + val1 + " </b>and<b> " + val2 + "</b>"
+                if((addArray(arr1) == val2) || addArray(arr2) == val1) {
+                    document.getElementById("displayNums").innerHTML +=  " are amicable!"
+                } else {
+                    document.getElementById("displayNums").innerHTML +=  " are <b>NOT</b> amicable."
+                }
             }
             
         }
         
         function showNums (val1, val2) {
-            if (!val1 || !val2) {
-                document.getElementById("displayNums").innerHTML = "<br> Please enter two valid numbers <br>"
+            if (!val1 || !val2 || isNaN(val1) || isNaN(val2)) {
+                document.getElementById("displayNums").innerHTML = "<br> Please enter two valid numbers. <br>"
+                return false
             } else {
-                document.getElementById("displayNums").innerHTML = "<br> Your numbers: " + val1 + ", " + val2 + "<br>"
+                document.getElementById("displayNums").innerHTML = "<br> Your numbers: <b>" + val1 + ", " + val2 + "</b>"
             }
+            return true
         }
 
 
@@ -76,7 +80,8 @@
                 if (i < (arr.length - 1)) {
                     temp += ", "
                 }
-                document.getElementById("displayNums").innerHTML += temp
+                document.getElementById("displayNums").innerHTML =  document.getElementById("displayNums").innerHTML + 
+                    "<b>" + temp + "</b>"
             }
         }
 
