@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <style>
+        body {
+            background-color: rgb(255, 209, 124);
+        }
+
+        form {
+            font-family: 'Poppins', sans-serif;
+            font-size: 25px;
+            text-align: center;
+            transform: translateY(10vh);
+        }
+
+        #input1, #input2 {
+            width: 160px;
+            height: 50px;
+            font-size: 25px;
+            background-color: rgb(255, 212, 131);
+            border: 5px solid rgb(255, 174, 24);
+        }
+
+        #button {
+            width: 60px;
+            font-size: 20px;
+            color: rgb(255, 174, 24);
+            border: none;
+            border-radius: 10%;
+            
+        }
+
+        .header {
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            font-size: 60px;
+            color: rgb(255, 166, 0);
+            padding-top: 20px;
+        }
+    </style>
+    <body>
+        <div class="header"> SWAP </div>
+        <form>
+            <input type="text" id="input1" size="12" name="input1"> &nbsp;
+            <input type="button" id="button" value="⇨"> &nbsp;
+            <input type="text" id="input2" size="12" name="input2">
+        </form>
+    </body>
+    <script>
+        document.getElementById("button").addEventListener("click", swap)
+
+        function swap () {
+            if (this.value == "⇨") {
+                this.value = "⇦"
+                var val1 = document.getElementById("input1").value
+                document.getElementById("input1").value = ""
+                document.getElementById("input2").value = val1
+            } else {
+                this.value = "⇨"
+                var val2 = document.getElementById("input2").value
+                document.getElementById("input2").value = ""
+                document.getElementById("input1").value = val2
+            }
+
+        }
+    </script>
+</html>
