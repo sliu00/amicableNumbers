@@ -39,7 +39,7 @@
         }
         
         function showNums (val1, val2) {
-            if (!val1 || !val2 || isNaN(val1) || isNaN(val2)) {
+            if (!val1 || !val2 || isNaN(val1) || isNaN(val2) || val1 < 0 || val2 < 0) {
                 document.getElementById("displayNums").innerHTML = "<br> Please enter two valid numbers. <br>"
                 return false
             } else {
